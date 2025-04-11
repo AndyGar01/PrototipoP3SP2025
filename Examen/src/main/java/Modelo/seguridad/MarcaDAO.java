@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo.seguridad;
 
 import Controlador.seguridad.Marca; 
@@ -14,40 +9,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author visitante
- */
 public class MarcaDAO {
 
-    private static final String SQL_SELECT = "SELECT codigo_clientes, nombre_clientes, estatus_clientes FROM clientes";
-    private static final String SQL_INSERT = "INSERT INTO clientes(codigo_clientes, nombre_clientes, estatus_clientes) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE clientes SET nombre_clientes=?, estatus_clientes=? WHERE codigo_clientes = ?";
-    private static final String SQL_DELETE = "DELETE FROM clientes WHERE codigo_clientes=?";
-    private static final String SQL_QUERY = "SELECT codigo_clientes, nombre_clientes, estatus_clientes FROM clientes WHERE codigo_clientes = ?";
+    private static final String SQL_SELECT = "SELECT codigo_marca, nombre_marca, estatus_marca FROM marca";
+    private static final String SQL_INSERT = "INSERT INTO marca(codigo_marca, nombre_marca, estatus_marca) VALUES(?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE marca SET nombre_marca=?, estatus_marca=? WHERE codigo_marca = ?";
+    private static final String SQL_DELETE = "DELETE FROM marca WHERE codigo_marca=?";
+    private static final String SQL_QUERY  = "SELECT codigo_marca, nombre_marca, estatus_marca FROM marca WHERE codigo_marca = ?";
 
     public List<Marca> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Marca cliente = null;
-        List<Marca> clientes = new ArrayList<Marca>();
+        List<Marca> marcas = new ArrayList<>();
 
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
+
             while (rs.next()) {
-                String codigoCliente = rs.getString("codigo_clientes");
-                String nombreMarca = rs.getString("nombre_clientes");
-                String estatusMarca = rs.getString("estatus_clientes");
-                
-                cliente = new Marca();
-                cliente.setCodigo_clientes(codigoCliente);
-                cliente.setNombre_clientes(nombreMarca);
-                cliente.setEstatus_clientes(estatusMarca);
-                
-                clientes.add(cliente);
+                Marca marca = new Marca();
+                marca.setCodigo_marca(rs.getString("codigo_marca"));
+                marca.setNombre_marca(rs.getString("nombre_marca"));
+                marca.setEstatus_marca(rs.getString("estatus_marca"));
+                marcas.add(marca);
             }
 
         } catch (SQLException ex) {
@@ -58,23 +44,24 @@ public class MarcaDAO {
             Conexion.close(conn);
         }
 
-        return clientes;
+        return marcas;
     }
 
-    public int insert(Marca cliente) { 
+    public int insert(Marca marca) { 
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
+
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, cliente.getCodigo_clientes());
-            stmt.setString(2, cliente.getNombre_clientes());
-            stmt.setString(3, cliente.getEstatus_clientes());
+            stmt.setString(1, marca.getCodigo_marca());
+            stmt.setString(2, marca.getNombre_marca());
+            stmt.setString(3, marca.getEstatus_marca());
 
-            System.out.println("ejecutando query: " + SQL_INSERT);
+            System.out.println("Ejecutando query: " + SQL_INSERT);
             rows = stmt.executeUpdate();
-            System.out.println("Registros afectados: " + rows);
+            System.out.println("Registros insertados: " + rows);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -85,23 +72,21 @@ public class MarcaDAO {
         return rows;
     }
 
-    public int update(Marca cliente) {
+    public int update(Marca marca) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
 
         try {
             conn = Conexion.getConnection();
-            System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            
-            stmt.setString(1, cliente.getNombre_clientes());
-            stmt.setString(2, cliente.getEstatus_clientes());
-            stmt.setString(3, cliente.getCodigo_clientes());
-            
-            rows = stmt.executeUpdate();
-            System.out.println("Registros actualizado: " + rows);
+            stmt.setString(1, marca.getNombre_marca());
+            stmt.setString(2, marca.getEstatus_marca());
+            stmt.setString(3, marca.getCodigo_marca());
 
+            System.out.println("Ejecutando query: " + SQL_UPDATE);
+            rows = stmt.executeUpdate();
+            System.out.println("Registros actualizados: " + rows);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -112,16 +97,17 @@ public class MarcaDAO {
         return rows;
     }
 
-    public int delete(Marca cliente) {
+    public int delete(Marca marca) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
 
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query: " + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setString(1, cliente.getCodigo_clientes());
+            stmt.setString(1, marca.getCodigo_marca());
+
+            System.out.println("Ejecutando query: " + SQL_DELETE);
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados: " + rows);
         } catch (SQLException ex) {
@@ -134,29 +120,22 @@ public class MarcaDAO {
         return rows;
     }
 
-    public Marca query(Marca cliente) {    
+    public Marca query(Marca marca) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Marca> clientes = new ArrayList<Marca>();
-        int rows = 0;
 
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query: " + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setString(1, cliente.getCodigo_clientes());
+            stmt.setString(1, marca.getCodigo_marca());
             rs = stmt.executeQuery();
-            while (rs.next()) {
-                String codigoCliente = rs.getString("codigo_clientes");
-                String nombreMarca = rs.getString("nombre_clientes");
-                String estatusMarca = rs.getString("estatus_clientes");
-                
-                cliente = new Marca();
-                cliente.setCodigo_clientes(codigoCliente);
-                cliente.setNombre_clientes(nombreMarca);
-                cliente.setEstatus_clientes(estatusMarca);
 
+            if (rs.next()) {
+                marca.setNombre_marca(rs.getString("nombre_marca"));
+                marca.setEstatus_marca(rs.getString("estatus_marca"));
+            } else {
+                marca = null; // No encontrado
             }
 
         } catch (SQLException ex) {
@@ -167,7 +146,6 @@ public class MarcaDAO {
             Conexion.close(conn);
         }
 
-        return cliente; 
+        return marca;
     }
-        
 }

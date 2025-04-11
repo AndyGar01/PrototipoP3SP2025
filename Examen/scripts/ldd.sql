@@ -1,12 +1,12 @@
 CREATE SCHEMA IF NOT EXISTS `hoteles` DEFAULT CHARACTER SET utf8 ;
-USE `hoteles` ;
+USE `examen` ;
  
 
 CREATE TABLE IF NOT EXISTS Marca(
     codigo_marca VARCHAR(5),
     nombre_marca VARCHAR(60),
     estatus_marca VARCHAR(1),
-    PRIMARY KEY (codigo_clientes))
+    PRIMARY KEY (codigo_marca))
 ENGINE = INNODB CHARACTER SET = LATIN1; 
 
 CREATE TABLE `usuario` (

@@ -33,9 +33,9 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
         tablaSedes.setModel(modelo);
         String[] dato = new String[3];
         for (int i = 0; i < clientes.size(); i++) {
-            dato[0] = clientes.get(i).getCodigo_clientes();
-            dato[1] = clientes.get(i).getNombre_clientes();
-            dato[2] = clientes.get(i).getEstatus_clientes();
+            dato[0] = clientes.get(i).getCodigo_marca();
+            dato[1] = clientes.get(i).getNombre_marca();
+            dato[2] = clientes.get(i).getEstatus_marca();
             modelo.addRow(dato);
         }
     }
@@ -43,10 +43,10 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
     public void buscarPerfil() {
         Marca clienteAConsultar = new Marca();
         MarcaDAO perfilDAO = new MarcaDAO();
-        clienteAConsultar.setCodigo_clientes(txtbuscado.getText());
+        clienteAConsultar.setCodigo_marca(txtbuscado.getText());
         clienteAConsultar = perfilDAO.query(clienteAConsultar);
-        txtNombre.setText(clienteAConsultar.getNombre_clientes());
-        txtEstatus.setText(clienteAConsultar.getEstatus_clientes());
+        txtNombre.setText(clienteAConsultar.getNombre_marca());
+        txtEstatus.setText(clienteAConsultar.getEstatus_marca());
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
         Bitacora bitacoraRegistro = new Bitacora();
@@ -89,7 +89,7 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
         label8 = new javax.swing.JLabel();
         txtEstatus = new javax.swing.JTextField();
         label5 = new javax.swing.JLabel();
-        txtidclientes = new javax.swing.JTextField();
+        txtidmarca = new javax.swing.JTextField();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -123,7 +123,7 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
         });
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Perfiles");
+        label1.setText("Marcas");
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -151,11 +151,11 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID Vendedor", "ID Empleado", "Correo", "Telefono", "Direccion", "Porcentaje", "Comision"
+                "ID Marca", "Nombre ", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -193,13 +193,13 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
         txtEstatus.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label5.setText("ID Cliente");
+        label5.setText("Id Marca");
 
-        txtidclientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtidclientes.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtidclientes.addActionListener(new java.awt.event.ActionListener() {
+        txtidmarca.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtidmarca.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtidmarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidclientesActionPerformed(evt);
+                txtidmarcaActionPerformed(evt);
             }
         });
 
@@ -239,7 +239,7 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(label5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtidclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtidmarca, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lb, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
@@ -280,7 +280,7 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
                                         .addGap(11, 11, 11)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(label5)
-                                            .addComponent(txtidclientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtidmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,7 +318,7 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
        MarcaDAO clientesDAO = new MarcaDAO();
         Marca clienteAEliminar = new Marca();
-        clienteAEliminar.setCodigo_clientes(txtbuscado.getText());
+        clienteAEliminar.setCodigo_marca(txtbuscado.getText());
         clientesDAO.delete(clienteAEliminar);
         llenadoDeTablas();
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
@@ -330,9 +330,9 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         MarcaDAO clientesDAO = new MarcaDAO();
         Marca clienteAInsertar = new Marca();
-        clienteAInsertar.setCodigo_clientes(txtidclientes.getText());
-        clienteAInsertar.setNombre_clientes(txtNombre.getText());
-        clienteAInsertar.setEstatus_clientes(txtEstatus.getText());
+        clienteAInsertar.setCodigo_marca(txtidmarca.getText());
+        clienteAInsertar.setNombre_marca(txtNombre.getText());
+        clienteAInsertar.setEstatus_marca(txtEstatus.getText());
         clientesDAO.insert(clienteAInsertar);
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
         int resultadoBitacora=0;
@@ -350,9 +350,9 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
 //        // TODO add your handling code here:
         MarcaDAO clientesDAO = new MarcaDAO();
         Marca clientesAActualizar = new Marca();
-        clientesAActualizar.setCodigo_clientes(txtbuscado.getText());
-        clientesAActualizar.setNombre_clientes(txtNombre.getText());
-        clientesAActualizar.setEstatus_clientes(txtEstatus.getText());
+        clientesAActualizar.setCodigo_marca(txtbuscado.getText());
+        clientesAActualizar.setNombre_marca(txtNombre.getText());
+        clientesAActualizar.setEstatus_marca(txtEstatus.getText());
         clientesDAO.update(clientesAActualizar);
         llenadoDeTablas();
         UsuarioConectado usuarioEnSesion = new UsuarioConectado();
@@ -363,7 +363,7 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         cbox_empleado.setSelectedIndex(0);
-        txtidclientes.setText("");
+        txtidmarca.setText("");
         txtNombre.setText("");
         txtEstatus.setText("");
         txtbuscado.setText("");
@@ -396,9 +396,9 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtidclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidclientesActionPerformed
+    private void txtidmarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidmarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtidclientesActionPerformed
+    }//GEN-LAST:event_txtidmarcaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -423,6 +423,6 @@ public class MantenimientoMarca extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtEstatus;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtbuscado;
-    private javax.swing.JTextField txtidclientes;
+    private javax.swing.JTextField txtidmarca;
     // End of variables declaration//GEN-END:variables
 }

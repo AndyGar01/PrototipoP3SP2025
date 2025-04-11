@@ -51,7 +51,7 @@ public class MdiGeneral extends javax.swing.JFrame {
         MenuGeneralSeguridad = new javax.swing.JMenu();
         MenuMantenimientos = new javax.swing.JMenu();
         MantenimientoUsuarios = new javax.swing.JMenuItem();
-        MantenimientoClientes = new javax.swing.JMenuItem();
+        MantenimientoMarca = new javax.swing.JMenuItem();
         Bitacora = new javax.swing.JMenu();
         ConsultaBitacora = new javax.swing.JMenuItem();
         salirSistema = new javax.swing.JMenuItem();
@@ -75,7 +75,7 @@ public class MdiGeneral extends javax.swing.JFrame {
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
-        MenuGeneralSeguridad.setText("Reservaciones");
+        MenuGeneralSeguridad.setText("Examen");
 
         MenuMantenimientos.setText("Mantenimientos");
         MenuMantenimientos.addActionListener(new java.awt.event.ActionListener() {
@@ -92,13 +92,13 @@ public class MdiGeneral extends javax.swing.JFrame {
         });
         MenuMantenimientos.add(MantenimientoUsuarios);
 
-        MantenimientoClientes.setText("Mantenimiento Clientes");
-        MantenimientoClientes.addActionListener(new java.awt.event.ActionListener() {
+        MantenimientoMarca.setText("Mantenimiento Marca");
+        MantenimientoMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MantenimientoClientesActionPerformed(evt);
+                MantenimientoMarcaActionPerformed(evt);
             }
         });
-        MenuMantenimientos.add(MantenimientoClientes);
+        MenuMantenimientos.add(MantenimientoMarca);
 
         MenuGeneralSeguridad.add(MenuMantenimientos);
 
@@ -220,7 +220,7 @@ for (javax.swing.JInternalFrame frame : jDesktopPane1.getAllFrames()) {
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
     }//GEN-LAST:event_MantenimientoUsuariosActionPerformed
 
-    private void MantenimientoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoClientesActionPerformed
+    private void MantenimientoMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MantenimientoMarcaActionPerformed
         for (javax.swing.JInternalFrame frame : jDesktopPane1.getAllFrames()) {
     frame.dispose(); // Cierra cada ventana abierta
     }
@@ -229,7 +229,7 @@ for (javax.swing.JInternalFrame frame : jDesktopPane1.getAllFrames()) {
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-    }//GEN-LAST:event_MantenimientoClientesActionPerformed
+    }//GEN-LAST:event_MantenimientoMarcaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,7 +269,7 @@ for (javax.swing.JInternalFrame frame : jDesktopPane1.getAllFrames()) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Bitacora;
     private javax.swing.JMenuItem ConsultaBitacora;
-    private javax.swing.JMenuItem MantenimientoClientes;
+    private javax.swing.JMenuItem MantenimientoMarca;
     private javax.swing.JMenuItem MantenimientoUsuarios;
     private javax.swing.JMenu MenuGeneralSeguridad;
     private javax.swing.JMenu MenuMantenimientos;

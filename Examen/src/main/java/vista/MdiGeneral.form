@@ -21,7 +21,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="MenuGeneralSeguridad">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Reservaciones"/>
+            <Property name="text" type="java.lang.String" value="Examen"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="MenuMantenimientos">
@@ -40,12 +40,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MantenimientoUsuariosActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="MantenimientoClientes">
+                <MenuItem class="javax.swing.JMenuItem" name="MantenimientoMarca">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Mantenimiento Clientes"/>
+                    <Property name="text" type="java.lang.String" value="Mantenimiento Marca"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MantenimientoClientesActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MantenimientoMarcaActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
