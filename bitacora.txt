@@ -1,0 +1,17 @@
+commit 5c8f6848b0ff5d5ccfe69445daa2b2d31ea87cc2
+Author: AndyGar01 <agarcial32@miumg.edu.gt>
+Date:   Fri Apr 11 09:40:37 2025 -0600
+
+    Programacion de variables y diseño
+
+commit fffd8a97f788038d7a55f047770ca2ec7b7e7f46
+Author: AndyGar01 <agarcial32@miumg.edu.gt>
+Date:   Fri Apr 11 09:13:35 2025 -0600
+
+    agregando base de mi programa
+
+commit 66803a2c3082c705031a842c19a76c9f4327717b
+Author: AndyGar01 <156693533+AndyGar01@users.noreply.github.com>
+Date:   Fri Apr 11 09:08:56 2025 -0600
+
+    Initial commit
